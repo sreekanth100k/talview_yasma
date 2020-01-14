@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/id_terms_privacy_policy_tv"
         android:layout_marginTop="20dip"
-     />
+        android:text="@string/terms_privacy_policy"/>
 
 
 
