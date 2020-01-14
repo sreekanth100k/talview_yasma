@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewRegistrationProfessional"
+    tools:context=".NewRegistrationProfessionalActivity"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:background="@android:color/white"
@@ -38,11 +38,18 @@
         android:textColor="@color/darkSlateGrey"
         android:id="@+id/id_name_tv"/>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="5dip"/>
+
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
-        android:padding="5dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip"
         android:id="@+id/id_name_et"/>
     </LinearLayout>
 
@@ -59,12 +66,18 @@
             android:text="@string/email_et_header"
             android:textColor="@color/darkSlateGrey"
             android:id="@+id/id_email_tv"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="5dip"/>
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner"
-            android:padding="5dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip"
             android:id="@+id/id_email_et"/>
     </LinearLayout>
 
@@ -81,12 +94,18 @@
             android:text="@string/mobile_et_header"
             android:textColor="@color/darkSlateGrey"
             android:id="@+id/id_mobile_tv"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="5dip"/>
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner"
-            android:padding="5dip"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
             android:id="@+id/id_mobile_et"/>
     </LinearLayout>
 
