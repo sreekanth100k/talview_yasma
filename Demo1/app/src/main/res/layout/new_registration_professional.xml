@@ -10,6 +10,7 @@
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:background="@android:color/white"
+    android:gravity="center"
     android:id="@+id/id_new_registration_professional_outermost_ll">
 
 
@@ -18,6 +19,8 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_gravity="center"
+        android:layout_marginTop="40dip"
+        android:textColor="@color/darkSlateGrey"
         android:id="@+id/id_new_registration_professional_tv"
         android:text="@string/new_registration_heading_text"/>
 
@@ -32,12 +35,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name_et_header"
+        android:textColor="@color/darkSlateGrey"
         android:id="@+id/id_name_tv"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/ghostWhite"
+        android:background="@drawable/rounded_corner"
+        android:padding="5dip"
         android:id="@+id/id_name_et"/>
     </LinearLayout>
 
@@ -52,12 +57,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/email_et_header"
+            android:textColor="@color/darkSlateGrey"
             android:id="@+id/id_email_tv"/>
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/ghostWhite"
+            android:background="@drawable/rounded_corner"
+            android:padding="5dip"
             android:id="@+id/id_email_et"/>
     </LinearLayout>
 
@@ -72,12 +79,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mobile_et_header"
+            android:textColor="@color/darkSlateGrey"
             android:id="@+id/id_mobile_tv"/>
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/ghostWhite"
+            android:background="@drawable/rounded_corner"
+            android:padding="5dip"
             android:id="@+id/id_mobile_et"/>
     </LinearLayout>
 
@@ -96,7 +105,7 @@
         android:textAllCaps="false"
         android:id="@+id/id_sign_up_btn"
         android:layout_marginTop="100dip"
-        android:background="@color/darkBlue"
+        android:background="@drawable/button_bg_rounded_corners"
         android:textColor="@android:color/white"
         android:layout_gravity="center"
         android:layout_height="wrap_content"/>

@@ -5,4 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="darkBlue">#0a1992</color>
     <color name="ghostWhite">#f7fafc</color>
+    <color name="darkSlateGrey">#373738</color>
+    <color name="mediumSeaGreen">#47c87b</color>
+    <color name="light_gray">#d4d4d4</color>
 </resources>
