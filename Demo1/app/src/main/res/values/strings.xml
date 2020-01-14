@@ -3,5 +3,6 @@
     <!--new registration professional page-->
     <string name="sign_up_btn_text">Sign Up</string>
     <string name="terms_privacy_policy">By signing up I agree to the Terms of Service &amp; Privacy policy</string>
+    <string name="new_registration_heading_text">New Registration</string>
 
 </resources>

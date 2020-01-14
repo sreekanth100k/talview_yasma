@@ -9,6 +9,14 @@
     tools:context=".NewRegistrationProfessional"
     android:id="@+id/id_new_registration_professional_outermost_ll">
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:text="@string/new_registration_heading_text"/>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:paddingLeft="20dip"
