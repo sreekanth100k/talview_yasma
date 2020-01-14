@@ -4,5 +4,11 @@
     <string name="sign_up_btn_text">Sign Up</string>
     <string name="terms_privacy_policy">By signing up I agree to the Terms of Service &amp; Privacy policy</string>
     <string name="new_registration_heading_text">New Registration</string>
+    <string name="name_et_header">Name</string>
+    <string name="email_et_header">E-Mail</string>
+    <string name="mobile_et_header">Mobile</string>
+
+
+
 
 </resources>

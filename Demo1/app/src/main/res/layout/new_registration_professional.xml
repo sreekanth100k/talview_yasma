@@ -7,6 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".NewRegistrationProfessional"
+    android:paddingLeft="20dip"
+    android:paddingRight="20dip"
+    android:background="@android:color/white"
     android:id="@+id/id_new_registration_professional_outermost_ll">
 
 
@@ -15,62 +18,66 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_gravity="center"
+        android:id="@+id/id_new_registration_professional_tv"
         android:text="@string/new_registration_heading_text"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/id_name_ll">
+        android:id="@+id/id_name_ll"
+        android:layout_marginBottom="10dip">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/name_et_header"
         android:id="@+id/id_name_tv"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/ghostWhite"
         android:id="@+id/id_name_et"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/id_email_ll">
+        android:id="@+id/id_email_ll"
+        android:layout_marginBottom="10dip">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/email_et_header"
             android:id="@+id/id_email_tv"/>
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@color/ghostWhite"
             android:id="@+id/id_email_et"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/id_mobile_ll">
+        android:id="@+id/id_mobile_ll"
+        android:layout_marginBottom="10dip">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/mobile_et_header"
             android:id="@+id/id_mobile_tv"/>
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@color/ghostWhite"
             android:id="@+id/id_mobile_et"/>
     </LinearLayout>
 
@@ -78,15 +85,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/id_terms_privacy_policy_tv"
-        android:text="@string/terms_privacy_policy"/>
+        android:layout_marginTop="20dip"
+     />
 
 
 
     <Button
         android:layout_width="wrap_content"
         android:text="@string/sign_up_btn_text"
+        android:textAllCaps="false"
         android:id="@+id/id_sign_up_btn"
         android:layout_marginTop="100dip"
+        android:background="@color/darkBlue"
+        android:textColor="@android:color/white"
         android:layout_gravity="center"
         android:layout_height="wrap_content"/>
 
