@@ -66,12 +66,19 @@
             android:id="@+id/id_mobile_et"/>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_terms_privacy_policy_tv"
+        android:text="@string/terms_privacy_policy"/>
+
 
 
     <Button
         android:layout_width="wrap_content"
-        android:text="@string/sign_up_btn_txt"
+        android:text="@string/sign_up_btn_text"
         android:id="@+id/id_sign_up_btn"
+        android:layout_marginTop="100dip"
         android:layout_gravity="center"
         android:layout_height="wrap_content"/>
 
