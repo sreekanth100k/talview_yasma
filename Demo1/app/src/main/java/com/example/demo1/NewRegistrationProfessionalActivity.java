@@ -15,14 +15,29 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.URLSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+
 import org.w3c.dom.Text;
 
-public class NewRegistrationProfessionalActivity extends AppCompatActivity {
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class NewRegistrationProfessionalActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>{
 
     private TextView mTermsNServicesTv;
 
@@ -30,6 +45,12 @@ public class NewRegistrationProfessionalActivity extends AppCompatActivity {
 
     private Button mSignUpBtn;
 
+    @Override
+    public void onTaskComplete(String result) {
+
+        Log.d("Result",result);
+
+    }
 
     public void getReferenceOfViews(){
         mTermsNServicesTv = (TextView) findViewById(R.id.id_terms_privacy_policy_tv);
@@ -74,6 +95,7 @@ public class NewRegistrationProfessionalActivity extends AppCompatActivity {
         mTermsNServicesTv.setMovementMethod(LinkMovementMethod.getInstance());
         mTermsNServicesTv.setText(spanTxt, TextView.BufferType.SPANNABLE);
 
+//        new CommonAsyncTask(getApplicationContext(),this).execute();
 
         mSignUpBtn.setOnClickListener(new View.OnClickListener(){
 
@@ -87,12 +109,48 @@ public class NewRegistrationProfessionalActivity extends AppCompatActivity {
 
 
 
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+// set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+// add your other interceptors …
+// add logging as last interceptor
+
+        httpClient.addInterceptor(logging);  // <-- this is the important line!
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.11:8000/api/v1/get-country-list/")
+                .client(httpClient.build())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        RetrofitServices retrofitServices = retrofit.create(RetrofitServices.class);
+        RequestBody body = RequestBody.create(null, "");
+
+
+        Call<CountryCodeResponse> call = retrofitServices.getCountryList();
+
+        call.enqueue(new Callback<CountryCodeResponse>() {
+            @Override
+            public void onResponse(Call<CountryCodeResponse> call, Response<CountryCodeResponse> response) {
+                Log.d("","");
+            }
+
+            @Override
+            public void onFailure(Call<CountryCodeResponse> call, Throwable t) {
+                Log.d("","");
+
+            }
+
+        });
+
+
+
 
     }
-
-
-
-
 }
 
 
