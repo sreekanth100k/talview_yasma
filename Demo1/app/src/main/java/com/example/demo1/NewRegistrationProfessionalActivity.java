@@ -80,6 +80,8 @@ public class NewRegistrationProfessionalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Toast.makeText(getApplicationContext(),"Sign up button clicked",Toast.LENGTH_LONG).show();
+
             }
         });
 
