@@ -24,6 +24,7 @@
         android:id="@+id/id_new_registration_professional_tv"
         android:text="@string/new_registration_heading_text"/>
 
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

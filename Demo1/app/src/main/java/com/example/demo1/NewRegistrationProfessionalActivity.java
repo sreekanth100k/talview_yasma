@@ -3,15 +3,18 @@ package com.example.demo1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,29 +46,33 @@ public class NewRegistrationProfessionalActivity extends AppCompatActivity {
 
         mTermsOfServiceNprivacyPolicyText   =  getResources().getString(R.string.terms_privacy_policy);
 
-        SpannableString ss = new SpannableString(mTermsOfServiceNprivacyPolicyText);
-        ClickableSpan clickableTerms = new ClickableSpan() {
+        SpannableStringBuilder spanTxt = new SpannableStringBuilder("By signing Up I agree to the ");
+        spanTxt.append("Terms of service");
+        spanTxt.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View widget) {
+                    Toast.makeText(getApplicationContext(), "Terms of services Clicked",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }, spanTxt.length() - "Terms of service".length(), spanTxt.length(), 0);
+        spanTxt.append(" &");
+
+        spanTxt.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.mediumSeaGreen)), 29, spanTxt.length(), 0);
+        spanTxt.append(" Privacy Policy");
+        spanTxt.setSpan(new ClickableSpan() {
             @Override
-            public void onClick(View textView) {
-                // show toast here
-
-                Toast.makeText(getApplicationContext(),"Terms of service clicked",Toast.LENGTH_LONG).show();
+            public void onClick(View widget) {
+                Toast.makeText(getApplicationContext(), "Privacy Policy Clicked",
+                        Toast.LENGTH_SHORT).show();
             }
-            @Override
-            public void updateDrawState(TextPaint ds) {
-                super.updateDrawState(ds);
+        }, spanTxt.length() - "Privacy Policy".length(), spanTxt.length(), 0);
 
-            }
-        };
-        ss.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.mediumSeaGreen)), 29, 45, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spanTxt.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.mediumSeaGreen)), spanTxt.length() - " Privacy Policy".length(), spanTxt.length(), 0);
 
 
-        ss.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.mediumSeaGreen)), 47,ss.length() , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-
-        mTermsNServicesTv.setText(ss);
-        mTermsNServicesTv.setMovementMethod(LinkMovementMethod.getInstance());
         mTermsNServicesTv.setHighlightColor(Color.TRANSPARENT);
+        mTermsNServicesTv.setMovementMethod(LinkMovementMethod.getInstance());
+        mTermsNServicesTv.setText(spanTxt, TextView.BufferType.SPANNABLE);
 
 
         mSignUpBtn.setOnClickListener(new View.OnClickListener(){
@@ -76,5 +83,14 @@ public class NewRegistrationProfessionalActivity extends AppCompatActivity {
             }
         });
 
+
+
+
     }
+
+
+
+
 }
+
+
