@@ -50,6 +50,7 @@
         android:paddingRight="10dip"
         android:paddingTop="5dip"
         android:paddingBottom="5dip"
+        android:textCursorDrawable="@null"
         android:id="@+id/id_name_et"/>
     </LinearLayout>
 
@@ -78,6 +79,7 @@
             android:paddingRight="10dip"
             android:paddingTop="5dip"
             android:paddingBottom="5dip"
+            android:textCursorDrawable="@null"
             android:id="@+id/id_email_et"/>
     </LinearLayout>
 
@@ -106,6 +108,7 @@
             android:paddingBottom="5dip"
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
+            android:textCursorDrawable="@null"
             android:id="@+id/id_mobile_et"/>
     </LinearLayout>
 

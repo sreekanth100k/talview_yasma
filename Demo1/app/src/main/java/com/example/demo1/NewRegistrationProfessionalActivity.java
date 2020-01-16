@@ -57,10 +57,10 @@ public class NewRegistrationProfessionalActivity extends AppCompatActivity {
 
             }
         };
-        ss.setSpan(new ForegroundColorSpan(Color.BLUE), 29, 45, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.mediumSeaGreen)), 29, 45, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 
-        ss.setSpan(new ForegroundColorSpan(Color.BLUE), 47,ss.length() , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.mediumSeaGreen)), 47,ss.length() , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 
         mTermsNServicesTv.setText(ss);
@@ -75,7 +75,6 @@ public class NewRegistrationProfessionalActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 }
