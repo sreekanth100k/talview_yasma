@@ -48,9 +48,9 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
 //    @Override
 //    public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
 ////        Crypto.Market market = marketList.get(position);
-////        holder.txtCoin.setText(market.coinName);
-////        holder.txtMarket.setText(market.market);
-////        holder.txtPrice.setText("$" + String.format("%.2f", Double.parseDouble(market.price)));
+////        holder.txtId.setText(market.coinName);
+////        holder.txtUserId.setText(market.market);
+////        holder.txtBody.setText("$" + String.format("%.2f", Double.parseDouble(market.price)));
 ////        if (market.coinName.equalsIgnoreCase("eth")) {
 ////            holder.cardView.setCardBackgroundColor(Color.GRAY);
 ////        } else {

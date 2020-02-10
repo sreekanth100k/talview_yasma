@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
@@ -13,17 +13,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#AA6a0dad"
             android:padding="8dp">
 
             <TextView
                 android:id="@+id/txtCoin"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:textAllCaps="true"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 app:layout_constraintHorizontal_bias="0.023"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -31,10 +32,11 @@
 
             <TextView
                 android:id="@+id/txtMarket"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:textColor="@android:color/white"
                 android:layout_marginTop="8dp"
                 app:layout_constraintHorizontal_bias="0.025"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -43,11 +45,12 @@
 
             <TextView
                 android:id="@+id/txtPrice"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:textColor="@android:color/white"
                 app:layout_constraintHorizontal_bias="0.025"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

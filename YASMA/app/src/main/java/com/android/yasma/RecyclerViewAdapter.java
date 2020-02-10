@@ -15,7 +15,7 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private List<Crypto.Market> marketList;
+    private List<PostPOJO> marketList;
 
 
     public RecyclerViewAdapter() {
@@ -34,15 +34,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
-        Crypto.Market market = marketList.get(position);
-        holder.txtCoin.setText(market.coinName);
-        holder.txtMarket.setText(market.market);
-        holder.txtPrice.setText("$" + String.format("%.2f", Double.parseDouble(market.price)));
-        if (market.coinName.equalsIgnoreCase("eth")) {
-            holder.cardView.setCardBackgroundColor(Color.GRAY);
-        } else {
-            holder.cardView.setCardBackgroundColor(Color.GREEN);
-        }
+        PostPOJO postPojoObj = marketList.get(position);
+
+        String id       =   String.valueOf(postPojoObj.Id);
+        holder.txtId.setText(id);
+        String userId   =   String.valueOf(postPojoObj.UserId);
+        holder.txtUserId.setText(userId);
+        String body     =   postPojoObj.Body;
+        holder.txtBody.setText(body);
+
     }
 
     @Override
@@ -50,25 +50,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return marketList.size();
     }
 
-    public void setData(List<Crypto.Market> data) {
+    public void setData(List<PostPOJO> data) {
         this.marketList.addAll(data);
         notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView txtCoin;
-        public TextView txtMarket;
-        public TextView txtPrice;
+        public TextView txtId;
+        public TextView txtUserId;
+        public TextView txtBody;
         public CardView cardView;
 
         public ViewHolder(View view) {
             super(view);
 
-            txtCoin = view.findViewById(R.id.txtCoin);
-            txtMarket = view.findViewById(R.id.txtMarket);
-            txtPrice = view.findViewById(R.id.txtPrice);
-            cardView = view.findViewById(R.id.cardView);
+            txtId       = view.findViewById(R.id.txtCoin);
+            txtUserId   = view.findViewById(R.id.txtMarket);
+            txtBody     = view.findViewById(R.id.txtPrice);
+            cardView    = view.findViewById(R.id.cardView);
         }
     }
 }

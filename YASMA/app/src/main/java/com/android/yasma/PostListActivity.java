@@ -104,8 +104,12 @@ public class PostListActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponseBody>() {
                          @Override
                          public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                             ArrayList<PostPOJO> postPOJOList    =   new ArrayList<PostPOJO>();
+
                              try {
                                  String responseBody = response.body().string();
+
 
 //                                 JsonParser parser    = new JsonParser();
 //                                 JsonElement array    = (JsonElement) parser.parse(responseBody);
@@ -113,17 +117,31 @@ public class PostListActivity extends AppCompatActivity {
                                  JSONArray arrayjs = new JSONArray(responseBody);
 
                                  for(int i =0;i<arrayjs.length();i++) {
-                                     JSONObject stringObj =  (JSONObject)arrayjs.get(0);
+                                     JSONObject jsonObject      =       (JSONObject)arrayjs.get(i);
+                                     Integer userId             =       (Integer)jsonObject.get("userId");
+                                     Integer id                 =       (Integer)jsonObject.get("id");
+                                     String title               =       (String)jsonObject.get("title");
+                                     String body                =       (String)jsonObject.get("body");
 
-                                     Log.d("PostListActivity","Index"+ String.valueOf(i)+stringObj.toString());
+                                     PostPOJO postPOJOObj       =       new PostPOJO();
+                                     postPOJOObj.UserId         =       userId;
+                                     postPOJOObj.Body           =       body;
+                                     postPOJOObj.Title          =       title;
+                                     postPOJOObj.Id             =       id;
+
+                                     postPOJOList.add(postPOJOObj);
+
+
                                  }
 
                                  Log.d("onResponse", responseBody);
                              }catch (Exception e){
                                  Log.e("onResponse", e.getMessage().toString());
 
-
                              }
+
+                             handleResults(postPOJOList);
+
 
                              if (response.isSuccessful()) {
                                  String msg = "";
@@ -143,10 +161,6 @@ public class PostListActivity extends AppCompatActivity {
                          }
                      }
         );
-
-
-
-
     }
 
 
@@ -162,10 +176,9 @@ public class PostListActivity extends AppCompatActivity {
     /*
      *If things work out load the data into the recycler view.
      */
-    private void handleResults(List<Crypto.Market> marketList) {
-        if (marketList != null && marketList.size() != 0) {
-            mRecyclerViewAdapter.setData(marketList);
-
+    private void handleResults(List<PostPOJO> postPOJOList) {
+        if (postPOJOList != null && postPOJOList.size() != 0) {
+            mRecyclerViewAdapter.setData(postPOJOList);
 
         } else {
             Toast.makeText(this, "NO RESULTS FOUND",
