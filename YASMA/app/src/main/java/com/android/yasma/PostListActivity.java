@@ -113,15 +113,10 @@ public class PostListActivity extends AppCompatActivity {
                                  JSONArray arrayjs = new JSONArray(responseBody);
 
                                  for(int i =0;i<arrayjs.length();i++) {
-                                     JSONObject jsonObject = (JSONObject) arrayjs.get(0);
+                                     JSONObject stringObj =  (JSONObject)arrayjs.get(0);
 
-                                     Log.d("PostListActivity","Index"+ String.valueOf(i)+jsonObject.toString());
+                                     Log.d("PostListActivity","Index"+ String.valueOf(i)+stringObj.toString());
                                  }
-
-
-
-
-
 
                                  Log.d("onResponse", responseBody);
                              }catch (Exception e){
@@ -132,17 +127,7 @@ public class PostListActivity extends AppCompatActivity {
 
                              if (response.isSuccessful()) {
                                  String msg = "";
-                                 try {
 
-                                     String responseBody = response.body().toString();
-                                     JSONObject jsonObject = new JSONObject(new Gson().toJson(responseBody));
-                                     msg         = jsonObject.getString("msg");
-
-                                     Boolean statusBool      = jsonObject.getBoolean("status");
-                                 } catch (JSONException e) {
-
-                                     Log.e("PostListActivity",e.getLocalizedMessage().toString());
-                                 }
 
                                  Toast.makeText(PostListActivity.this, msg, Toast.LENGTH_SHORT).show();
                                  Log.e("cvbnop",response.body().toString());
