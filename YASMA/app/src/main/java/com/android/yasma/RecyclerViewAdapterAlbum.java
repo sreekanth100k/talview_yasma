@@ -42,6 +42,8 @@ public class RecyclerViewAdapterAlbum extends RecyclerView.Adapter<RecyclerViewA
     public void onBindViewHolder(RecyclerViewAdapterAlbum.ViewHolder holder, int position) {
         AlbumPOJO postPojoObj = marketList.get(position);
 
+         String currentItem = String.valueOf(postPojoObj.id);
+
 //        String id       =   String.valueOf(postPojoObj.Id);
 //        holder.txtId.setText(id);
 //        String userId   =   String.valueOf(postPojoObj.UserId);
@@ -52,7 +54,7 @@ public class RecyclerViewAdapterAlbum extends RecyclerView.Adapter<RecyclerViewA
         holder.outerMostLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,"Album item clicked",Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext,"Album item clicked"+currentItem,Toast.LENGTH_LONG).show();
 
 
                 Intent albumIntent = new Intent(mContext, PostListActivity.class);
