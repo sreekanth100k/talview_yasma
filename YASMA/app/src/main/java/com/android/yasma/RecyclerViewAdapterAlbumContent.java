@@ -17,7 +17,7 @@ import java.util.List;
 
 public class RecyclerViewAdapterAlbumContent extends RecyclerView.Adapter<RecyclerViewAdapterAlbumContent.ViewHolder> {
 
-    private List<AlbumContentPOJO> marketList;
+    private List<AlbumPhotoContentPOJO> marketList;
     private Context mContext;
 
 
@@ -39,7 +39,7 @@ public class RecyclerViewAdapterAlbumContent extends RecyclerView.Adapter<Recycl
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapterAlbumContent.ViewHolder holder, int position) {
-        AlbumContentPOJO postPojoObj = marketList.get(position);
+        AlbumPhotoContentPOJO postPojoObj = marketList.get(position);
 
          String currentItem = String.valueOf(postPojoObj.id);
 
@@ -72,7 +72,7 @@ public class RecyclerViewAdapterAlbumContent extends RecyclerView.Adapter<Recycl
         return marketList.size();
     }
 
-    public void setData(List<AlbumContentPOJO> data) {
+    public void setData(List<AlbumPhotoContentPOJO> data) {
         this.marketList.addAll(data);
         this.notifyItemRangeChanged(0, marketList.size()-1);
 

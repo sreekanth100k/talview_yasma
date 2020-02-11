@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AlbumContentActivity extends AppCompatActivity {
 
     private Retrofit mRetrofit;
-    private RecyclerView mRecyclerView;
+    private RecyclerView mAlbumPhotosRv;
     private RecyclerViewAdapterAlbumContent mRecyclerViewAdapterAlbumContentObj;
     private String itemId;
     private TextView userId;
@@ -47,7 +47,7 @@ public class AlbumContentActivity extends AppCompatActivity {
 
         userId  =   (TextView)findViewById(R.id.id_user_id);
 
-        id  =   (TextView)findViewById(R.id.id_id);
+        id      =   (TextView)findViewById(R.id.id_id);
 
         title   =   (TextView) findViewById(R.id.id_title);
 
@@ -58,8 +58,6 @@ public class AlbumContentActivity extends AppCompatActivity {
         itemId  =   getIntent().getStringExtra("itemId");
 
         Toast.makeText(this,itemId,Toast.LENGTH_LONG).show();
-
-        getReferenceOfViewsAndSetUp();
 
         initRetroFit(initOkHttp(),initGson());
 
@@ -91,7 +89,8 @@ public class AlbumContentActivity extends AppCompatActivity {
 
     public void getReferenceOfViewsAndSetUp(){
 
-       mRecyclerView = (RecyclerView)findViewById(R.id.id_album_content_rv);
+       mAlbumPhotosRv = (RecyclerView)findViewById(R.id.id_album_photos_rv);
+
 
     }
 
@@ -118,7 +117,7 @@ public class AlbumContentActivity extends AppCompatActivity {
                          @Override
                          public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                             ArrayList<AlbumContentPOJO> albumPOJOobjList    =   new ArrayList<AlbumContentPOJO>();
+                             ArrayList<AlbumPhotoContentPOJO> albumPOJOobjList    =   new ArrayList<AlbumPhotoContentPOJO>();
 
                              try {
                                  String responseBody = response.body().string();
@@ -133,8 +132,8 @@ public class AlbumContentActivity extends AppCompatActivity {
                                  int id         =   arrayjs.getInt("id");
                                  String title   =   arrayjs.getString("title");
 
-                                 AlbumContentPOJO albumContentPOJOObj   =   new AlbumContentPOJO();
-                                 albumContentPOJOObj.userId             =   userId;
+                                 AlbumPhotoContentPOJO albumContentPOJOObj   =   new AlbumContentPOJO();
+                                 albumContentPOJOObj.albumId           =   userId;
                                  albumContentPOJOObj.id                 =   id;
                                  albumContentPOJOObj.title              =   title;
 //                                 for(int i =0;i<arrayjs.length();i++) {
@@ -182,8 +181,79 @@ public class AlbumContentActivity extends AppCompatActivity {
                          }
                      }
         );
-    }
 
+        Call<ResponseBody> albumPhotoDetailsCall = postServiceObj.getAlbumPhotoDetails(Integer.valueOf(itemId));
+        albumPhotoDetailsCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                //Handling the photos here...
+
+                ArrayList<AlbumPhotoContentPOJO> albumPhotoContentPojoList    =   new ArrayList<AlbumPhotoContentPOJO>();
+
+                try {
+                    String responseBody = response.body().string();
+
+                    JSONArray arrayjs      =   new JSONArray(responseBody);
+
+
+                    for(int i =0;i<arrayjs.length();i++) {
+                        JSONObject jsonObject       =       (JSONObject)arrayjs.get(i);
+                        Integer albumId             =       (Integer)jsonObject.getInt("albumId");
+                        Integer id                  =       (Integer)jsonObject.get("id");
+                        String title                =       (String)jsonObject.get("title");
+                        String url                  =       (String)jsonObject.get("url");
+                        String thumbNailUrl         =       (String)jsonObject.get("thumbnailUrl");
+
+
+                        AlbumPhotoContentPOJO albumPhotoContentPOJOObj       =       new AlbumPhotoContentPOJO();
+                        albumPhotoContentPOJOObj.albumId         =       albumId;
+                        albumPhotoContentPOJOObj.title           =       title;
+                        albumPhotoContentPOJOObj.url             =       url;
+                        albumPhotoContentPOJOObj.thumbNailUrl    =       thumbNailUrl;
+                        albumPhotoContentPOJOObj.id              =       id;
+
+
+                        albumPhotoContentPojoList.add(albumPhotoContentPOJOObj);
+
+                    }
+
+
+
+
+                    Log.d("onResponse", responseBody);
+                }catch (Exception e){
+                    Log.e("onResponse", e.getMessage().toString());
+
+                }
+
+
+                handleResults(albumPhotoContentPojoList);
+
+
+                if (response.isSuccessful()) {
+
+
+
+
+                    Log.e("cvbnop",response.body().toString());
+                } else {
+                    Toast.makeText(AlbumContentActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+
+
+
+    }
 
     /*
      *If things work out load the data into the recycler view.
@@ -191,12 +261,25 @@ public class AlbumContentActivity extends AppCompatActivity {
     private void handleResults(AlbumContentPOJO iAlbumContentPOJO) {
         if (iAlbumContentPOJO != null) {
 
-            String userIdString = String.valueOf(iAlbumContentPOJO.userId);
+            String userIdString = String.valueOf(iAlbumContentPOJO);
             userId.setText(userIdString);
             String idString     = String.valueOf(iAlbumContentPOJO.id);
             id.setText(idString);
             String titleString  = iAlbumContentPOJO.title;
             title.setText(titleString);
+
+        } else {
+            Toast.makeText(this, "NO RESULTS FOUND",
+                    Toast.LENGTH_LONG).show();
+        }
+
+    }
+    /*
+     *If things work out load the data into the recycler view.
+     */
+    private void handleResults(ArrayList<AlbumPhotoContentPOJO> iAlbumPhotoContentList) {
+        if (iAlbumPhotoContentList != null && iAlbumPhotoContentList.size()!=0) {
+            mRecyclerViewAdapterAlbumContentObj.setData(iAlbumPhotoContentList);
 
         } else {
             Toast.makeText(this, "NO RESULTS FOUND",

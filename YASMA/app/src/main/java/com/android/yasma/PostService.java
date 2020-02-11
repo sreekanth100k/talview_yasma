@@ -24,4 +24,9 @@ public interface PostService {
     @GET("albums/{id}")
     Call<ResponseBody> getAlbumDetails(@Path("id") int id);
 
+    @GET("albums/{id}/photos")
+    Call<ResponseBody> getAlbumPhotoDetails(@Path("id") int id);
+
+
+
 }
