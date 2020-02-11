@@ -18,6 +18,12 @@ public interface PostService {
     @GET("posts")
     Call<ResponseBody> getPostListData();
 
+    @GET("posts/{id}")
+    Call<ResponseBody> getPostDetails(@Path("id") int id);
+
+    @GET("posts/{id}/comments")
+    Call<ResponseBody> getPostCommentDetails(@Path("id") int id);
+
     @GET("albums")
     Call<ResponseBody> getAlbumListData();
 
