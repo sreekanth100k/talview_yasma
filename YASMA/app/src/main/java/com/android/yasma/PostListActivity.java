@@ -40,7 +40,7 @@ public class PostListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.album_list_screen);
+        setContentView(R.layout.post_list_screen);
 
         getReferenceOfViewsAndSetUp();
 
@@ -156,7 +156,7 @@ public class PostListActivity extends AppCompatActivity {
 
 
     private void getReferenceOfViewsAndSetUp(){
-        mRecyclerView =   findViewById(R.id.id_album_rv);
+        mRecyclerView =   findViewById(R.id.id_posts_rv);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mRecyclerViewAdapter =   new RecyclerViewAdapterPost();
