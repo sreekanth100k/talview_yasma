@@ -42,9 +42,6 @@ public class PostListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_list_screen);
 
-        String itemId   =   getIntent().getStringExtra("itemId");
-        Toast.makeText(this,itemId,Toast.LENGTH_LONG).show();
-
 
         getReferenceOfViewsAndSetUp();
 

@@ -116,44 +116,21 @@ public class AlbumContentActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponseBody>() {
                          @Override
                          public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                             AlbumContentPOJO albumContentPOJOObj   =   new AlbumContentPOJO();
 
-                             ArrayList<AlbumPhotoContentPOJO> albumPOJOobjList    =   new ArrayList<AlbumPhotoContentPOJO>();
 
                              try {
                                  String responseBody = response.body().string();
 
-
-//                                 JsonParser parser    = new JsonParser();
-//                                 JsonElement array    = (JsonElement) parser.parse(responseBody);
-//                                 System.out.println(((JSONObject)array.get(0)).get("user_id"));
                                  JSONObject arrayjs = new JSONObject(responseBody);
 
                                  int userId     =   arrayjs.getInt("userId");
                                  int id         =   arrayjs.getInt("id");
                                  String title   =   arrayjs.getString("title");
 
-                                 AlbumPhotoContentPOJO albumContentPOJOObj   =   new AlbumContentPOJO();
-                                 albumContentPOJOObj.albumId           =   userId;
+                                 albumContentPOJOObj.userId             =   userId;
                                  albumContentPOJOObj.id                 =   id;
                                  albumContentPOJOObj.title              =   title;
-//                                 for(int i =0;i<arrayjs.length();i++) {
-//                                     JSONObject jsonObject      =       (JSONObject)arrayjs.get(i);
-//                                     Integer userId             =       (Integer)jsonObject.get("userId");
-//                                     Integer id                 =       (Integer)jsonObject.get("id");
-//                                     String title               =       (String)jsonObject.get("title");
-//                                     String body                =       (String)jsonObject.get("body");
-//
-//                                     AlbumPOJO albumPOJOObj      =       new AlbumPOJO();
-//                                     albumPOJOObj.userId         =       userId;
-//                                     albumPOJOObj.title          =       title;
-//                                     albumPOJOObj.id             =       id;
-//
-//                                     albumPOJOobjList.add(albumPOJOObj);
-//
-//
-//                                 }
-
-                                 handleResults(albumContentPOJOObj);
 
                                  Log.d("onResponse", responseBody);
                              }catch (Exception e){
@@ -161,10 +138,9 @@ public class AlbumContentActivity extends AppCompatActivity {
 
                              }
 
-
+                             handleResults(albumContentPOJOObj);
 
                              if (response.isSuccessful()) {
-
 
                                  Log.e("cvbnop",response.body().toString());
                              } else {
