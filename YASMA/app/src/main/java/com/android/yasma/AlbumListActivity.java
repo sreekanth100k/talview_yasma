@@ -1,12 +1,12 @@
 package com.android.yasma;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,15 +27,10 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
-/**
- * This lists the posts
- */
-public class PostListActivity extends AppCompatActivity {
-
+public class AlbumListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Retrofit mRetrofit;
-    private RecyclerViewAdapterPost mRecyclerViewAdapter;
+    private RecyclerViewAdapterAlbum mRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +71,10 @@ public class PostListActivity extends AppCompatActivity {
      */
     private void initRetroFit(OkHttpClient iOkHttpClient,Gson iGson){
         mRetrofit                           =   new Retrofit.Builder().baseUrl(PostService.BASE_URL)
-                                                .client(iOkHttpClient)
-                                                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                                                .addConverterFactory(GsonConverterFactory.create(iGson))
-                                                .build();
+                .client(iOkHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(iGson))
+                .build();
     }
 
     /**
@@ -89,12 +84,12 @@ public class PostListActivity extends AppCompatActivity {
 
         PostService postServiceObj = mRetrofit.create(PostService.class);
 
-        Call<ResponseBody> call = postServiceObj.getPostData();
+        Call<ResponseBody> call = postServiceObj.getAlbumData();
         call.enqueue(new Callback<ResponseBody>() {
                          @Override
                          public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                             ArrayList<PostPOJO> postPOJOList    =   new ArrayList<PostPOJO>();
+                             ArrayList<AlbumPOJO> albumPOJOArrayList    =   new ArrayList<AlbumPOJO>();
 
                              try {
                                  String responseBody = response.body().string();
@@ -110,15 +105,13 @@ public class PostListActivity extends AppCompatActivity {
                                      Integer userId             =       (Integer)jsonObject.get("userId");
                                      Integer id                 =       (Integer)jsonObject.get("id");
                                      String title               =       (String)jsonObject.get("title");
-                                     String body                =       (String)jsonObject.get("body");
 
-                                     PostPOJO postPOJOObj       =       new PostPOJO();
-                                     postPOJOObj.UserId         =       userId;
-                                     postPOJOObj.Body           =       body;
-                                     postPOJOObj.Title          =       title;
-                                     postPOJOObj.Id             =       id;
+                                     AlbumPOJO albumPojoObj       =       new AlbumPOJO();
+                                     albumPojoObj.id         =       userId;
+                                     albumPojoObj.title             =       title;
+                                     albumPojoObj.userId            =       userId;
 
-                                     postPOJOList.add(postPOJOObj);
+                                     albumPOJOArrayList.add(albumPojoObj);
 
 
                                  }
@@ -129,17 +122,17 @@ public class PostListActivity extends AppCompatActivity {
 
                              }
 
-                             handleResults(postPOJOList);
+                             handleResults(albumPOJOArrayList);
 
 
                              if (response.isSuccessful()) {
                                  String msg = "";
 
 
-                                 Toast.makeText(PostListActivity.this, msg, Toast.LENGTH_SHORT).show();
+                                 Toast.makeText(AlbumListActivity.this, msg, Toast.LENGTH_SHORT).show();
                                  Log.e("cvbnop",response.body().toString());
                              } else {
-                                 Toast.makeText(PostListActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();
+                                 Toast.makeText(AlbumListActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();
                              }
                          }
 
@@ -159,7 +152,7 @@ public class PostListActivity extends AppCompatActivity {
         mRecyclerView =   findViewById(R.id.id_album_rv);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRecyclerViewAdapter =   new RecyclerViewAdapterPost();
+        mRecyclerViewAdapter =   new RecyclerViewAdapterAlbum();
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
     }
@@ -167,9 +160,9 @@ public class PostListActivity extends AppCompatActivity {
     /*
      *If things work out load the data into the recycler view.
      */
-    private void handleResults(List<PostPOJO> postPOJOList) {
-        if (postPOJOList != null && postPOJOList.size() != 0) {
-            mRecyclerViewAdapter.setData(postPOJOList);
+    private void handleResults(List<AlbumPOJO> iAlbumPOJOlist) {
+        if (iAlbumPOJOlist != null && iAlbumPOJOlist.size() != 0) {
+            mRecyclerViewAdapter.setData(iAlbumPOJOlist);
 
         } else {
             Toast.makeText(this, "NO RESULTS FOUND",
@@ -185,4 +178,5 @@ public class PostListActivity extends AppCompatActivity {
         Toast.makeText(this, "ERROR IN FETCHING API RESPONSE. Try again",
                 Toast.LENGTH_LONG).show();
     }
+
 }

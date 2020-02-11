@@ -1,5 +1,4 @@
 package com.android.yasma;
-import android.graphics.Color;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,33 +12,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapterPost extends RecyclerView.Adapter<RecyclerViewAdapterPost.ViewHolder> {
 
     private List<PostPOJO> marketList;
 
 
-    public RecyclerViewAdapter() {
+    public RecyclerViewAdapterPost() {
         marketList = new ArrayList<>();
     }
 
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                             int viewType) {
+    public RecyclerViewAdapterPost.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                 int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_recycler_view_item_layout, parent, false);
 
-        RecyclerViewAdapter.ViewHolder viewHolder = new RecyclerViewAdapter.ViewHolder(view);
+        RecyclerViewAdapterPost.ViewHolder viewHolder = new RecyclerViewAdapterPost.ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerViewAdapterPost.ViewHolder holder, int position) {
         PostPOJO postPojoObj = marketList.get(position);
 
-        String id       =   String.valueOf(postPojoObj.Id);
-        holder.txtId.setText(id);
-        String userId   =   String.valueOf(postPojoObj.UserId);
-        holder.txtUserId.setText(userId);
+//        String id       =   String.valueOf(postPojoObj.Id);
+//        holder.txtId.setText(id);
+//        String userId   =   String.valueOf(postPojoObj.UserId);
+//        holder.txtUserId.setText(userId);
         String body     =   postPojoObj.Body;
         holder.txtBody.setText(body);
 
@@ -65,8 +64,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public ViewHolder(View view) {
             super(view);
 
-            txtId       = view.findViewById(R.id.txtCoin);
-            txtUserId   = view.findViewById(R.id.txtMarket);
+//            txtId       = view.findViewById(R.id.txtCoin);
+//            txtUserId   = view.findViewById(R.id.txtMarket);
             txtBody     = view.findViewById(R.id.txtPrice);
             cardView    = view.findViewById(R.id.cardView);
         }

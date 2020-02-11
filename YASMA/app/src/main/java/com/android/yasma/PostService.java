@@ -18,6 +18,7 @@ public interface PostService {
     @GET("posts")
     Call<ResponseBody> getPostData();
 
-
+    @GET("albums")
+    Call<ResponseBody> getAlbumData();
 
 }
