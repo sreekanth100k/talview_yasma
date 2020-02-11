@@ -54,8 +54,6 @@ public class RecyclerViewAdapterAlbum extends RecyclerView.Adapter<RecyclerViewA
         holder.outerMostLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,"Album item clicked"+currentItem,Toast.LENGTH_LONG).show();
-
 
                 Intent albumIntent = new Intent(mContext, AlbumContentActivity.class);
                 albumIntent.putExtra("itemId",currentItem);

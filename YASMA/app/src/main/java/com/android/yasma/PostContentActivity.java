@@ -29,7 +29,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AlbumContentActivity extends AppCompatActivity {
+public class PostContentActivity extends AppCompatActivity {
 
     private Retrofit mRetrofit;
     private RecyclerView mAlbumPhotosRv;
@@ -87,7 +87,7 @@ public class AlbumContentActivity extends AppCompatActivity {
 
     public void getReferenceOfViewsAndSetUp(){
 
-       mAlbumPhotosRv = (RecyclerView)findViewById(R.id.id_album_photos_rv);
+        mAlbumPhotosRv = (RecyclerView)findViewById(R.id.id_album_photos_rv);
 
 
     }
@@ -142,7 +142,7 @@ public class AlbumContentActivity extends AppCompatActivity {
 
                                  Log.e("cvbnop",response.body().toString());
                              } else {
-                                 Toast.makeText(AlbumContentActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();
+                                 Toast.makeText(PostContentActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();
                              }
                          }
 
@@ -212,7 +212,7 @@ public class AlbumContentActivity extends AppCompatActivity {
 
                     Log.e("cvbnop",response.body().toString());
                 } else {
-                    Toast.makeText(AlbumContentActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(PostContentActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();
                 }
 
 
