@@ -2,17 +2,16 @@ package com.android.yasma;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AlbumPOJO {
+public class AlbumContentPOJO {
 
-    @SerializedName("UserId")
-    public int userId;
+
+    @SerializedName("userId")
+    int userId;
 
     @SerializedName("id")
-    public int id;
+    int id;
 
     @SerializedName("title")
-    public
     String title;
-
 
 }

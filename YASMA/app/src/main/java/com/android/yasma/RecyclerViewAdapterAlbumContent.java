@@ -12,43 +12,42 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapterPost extends RecyclerView.Adapter<RecyclerViewAdapterPost.ViewHolder> {
+public class RecyclerViewAdapterAlbumContent extends RecyclerView.Adapter<RecyclerViewAdapterAlbumContent.ViewHolder> {
 
-    private List<PostPOJO> marketList;
+    private List<AlbumContentPOJO> marketList;
     private Context mContext;
 
 
-    public RecyclerViewAdapterPost(Context iContext) {
+    public RecyclerViewAdapterAlbumContent(Context iContext) {
         marketList  =   new ArrayList<>();
         mContext    =   iContext;
 
     }
 
     @Override
-    public RecyclerViewAdapterPost.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                 int viewType) {
+    public RecyclerViewAdapterAlbumContent.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                         int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_recycler_view_item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.album_recycler_view_item_layout, parent, false);
 
-        RecyclerViewAdapterPost.ViewHolder viewHolder = new RecyclerViewAdapterPost.ViewHolder(view);
+        RecyclerViewAdapterAlbumContent.ViewHolder viewHolder = new RecyclerViewAdapterAlbumContent.ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewAdapterPost.ViewHolder holder, int position) {
-        PostPOJO postPojoObj = marketList.get(position);
+    public void onBindViewHolder(RecyclerViewAdapterAlbumContent.ViewHolder holder, int position) {
+        AlbumContentPOJO postPojoObj = marketList.get(position);
 
-        String currentItem  =   String.valueOf(postPojoObj.Id);
+         String currentItem = String.valueOf(postPojoObj.id);
 
 //        String id       =   String.valueOf(postPojoObj.Id);
 //        holder.txtId.setText(id);
 //        String userId   =   String.valueOf(postPojoObj.UserId);
 //        holder.txtUserId.setText(userId);
-        String body     =   postPojoObj.Body;
+        String body     =   postPojoObj.title;
         holder.txtBody.setText(body);
 
         holder.outerMostLl.setOnClickListener(new View.OnClickListener() {
@@ -57,9 +56,11 @@ public class RecyclerViewAdapterPost extends RecyclerView.Adapter<RecyclerViewAd
                 Toast.makeText(mContext,"Album item clicked"+currentItem,Toast.LENGTH_LONG).show();
 
 
-                Intent albumIntent = new Intent(mContext, PostListActivity.class);
+                Intent albumIntent = new Intent(mContext, AlbumContentActivity.class);
                 albumIntent.putExtra("itemId",currentItem);
                 mContext.startActivity(albumIntent);
+
+
 
             }
         });
@@ -71,9 +72,10 @@ public class RecyclerViewAdapterPost extends RecyclerView.Adapter<RecyclerViewAd
         return marketList.size();
     }
 
-    public void setData(List<PostPOJO> data) {
+    public void setData(List<AlbumContentPOJO> data) {
         this.marketList.addAll(data);
-        notifyDataSetChanged();
+        this.notifyItemRangeChanged(0, marketList.size()-1);
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -84,15 +86,16 @@ public class RecyclerViewAdapterPost extends RecyclerView.Adapter<RecyclerViewAd
         public CardView cardView;
         public LinearLayout outerMostLl;
 
+
         public ViewHolder(View view) {
             super(view);
 
 //            txtId       = view.findViewById(R.id.txtCoin);
 //            txtUserId   = view.findViewById(R.id.txtMarket);
+            outerMostLl =   view.findViewById(R.id.id_outermost_ll_album_item);
 
-            outerMostLl =   view.findViewById(R.id.id_outermost_ll_post_item);
-            txtBody     =   view.findViewById(R.id.txtPrice);
-            cardView    =   view.findViewById(R.id.cardView);
+            txtBody     = view.findViewById(R.id.txtPrice);
+            cardView    = view.findViewById(R.id.cardView);
         }
 
 

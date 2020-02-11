@@ -42,6 +42,10 @@ public class PostListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_list_screen);
 
+        String itemId   =   getIntent().getStringExtra("itemId");
+        Toast.makeText(this,itemId,Toast.LENGTH_LONG).show();
+
+
         getReferenceOfViewsAndSetUp();
 
         initRetroFit(initOkHttp(),initGson());
@@ -89,7 +93,7 @@ public class PostListActivity extends AppCompatActivity {
 
         PostService postServiceObj = mRetrofit.create(PostService.class);
 
-        Call<ResponseBody> call = postServiceObj.getPostData();
+        Call<ResponseBody> call = postServiceObj.getPostListData();
         call.enqueue(new Callback<ResponseBody>() {
                          @Override
                          public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -157,7 +161,7 @@ public class PostListActivity extends AppCompatActivity {
         mRecyclerView =   findViewById(R.id.id_posts_rv);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRecyclerViewAdapter =   new RecyclerViewAdapterPost();
+        mRecyclerViewAdapter =   new RecyclerViewAdapterPost(this);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
     }

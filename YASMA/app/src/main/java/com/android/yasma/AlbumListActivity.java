@@ -35,7 +35,11 @@ public class AlbumListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.album_list_screen);
+        setContentView(R.layout.album_t_activity);
+
+        String itemId   =   getIntent().getStringExtra("itemId");
+
+        Toast.makeText(this,itemId,Toast.LENGTH_LONG).show();
 
         getReferenceOfViewsAndSetUp();
 
@@ -84,7 +88,7 @@ public class AlbumListActivity extends AppCompatActivity {
 
         PostService postServiceObj = mRetrofit.create(PostService.class);
 
-        Call<ResponseBody> call = postServiceObj.getAlbumData();
+        Call<ResponseBody> call = postServiceObj.getAlbumListData();
         call.enqueue(new Callback<ResponseBody>() {
                          @Override
                          public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -106,8 +110,8 @@ public class AlbumListActivity extends AppCompatActivity {
                                      Integer id                 =       (Integer)jsonObject.get("id");
                                      String title               =       (String)jsonObject.get("title");
 
-                                     AlbumPOJO albumPojoObj       =       new AlbumPOJO();
-                                     albumPojoObj.id         =       userId;
+                                     AlbumPOJO albumPojoObj         =       new AlbumPOJO();
+                                     albumPojoObj.id                =       id;
                                      albumPojoObj.title             =       title;
                                      albumPojoObj.userId            =       userId;
 

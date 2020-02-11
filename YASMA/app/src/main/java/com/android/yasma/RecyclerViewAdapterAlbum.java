@@ -57,9 +57,9 @@ public class RecyclerViewAdapterAlbum extends RecyclerView.Adapter<RecyclerViewA
                 Toast.makeText(mContext,"Album item clicked"+currentItem,Toast.LENGTH_LONG).show();
 
 
-                Intent albumIntent = new Intent(mContext, PostListActivity.class);
+                Intent albumIntent = new Intent(mContext, AlbumContentActivity.class);
+                albumIntent.putExtra("itemId",currentItem);
                 mContext.startActivity(albumIntent);
-
 
 
 

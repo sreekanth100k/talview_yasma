@@ -16,9 +16,12 @@ public interface PostService {
     String BASE_URL = "https://jsonplaceholder.typicode.com/";
 
     @GET("posts")
-    Call<ResponseBody> getPostData();
+    Call<ResponseBody> getPostListData();
 
     @GET("albums")
-    Call<ResponseBody> getAlbumData();
+    Call<ResponseBody> getAlbumListData();
+
+    @GET("albums/{id}")
+    Call<ResponseBody> getAlbumDetails(@Path("id") int id);
 
 }
