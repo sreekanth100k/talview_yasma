@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:id="@+id/id_heading_tv"
         android:text="POSTS"
+        android:textStyle="bold"
         android:textColor="#AA6a0dad"
         android:layout_gravity="center"
         android:gravity="center"

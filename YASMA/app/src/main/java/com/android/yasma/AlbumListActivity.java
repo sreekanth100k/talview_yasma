@@ -129,8 +129,6 @@ public class AlbumListActivity extends AppCompatActivity {
                                  String msg = "";
 
 
-                                 Toast.makeText(AlbumListActivity.this, msg, Toast.LENGTH_SHORT).show();
-                                 Log.e("cvbnop",response.body().toString());
                              } else {
                                  Toast.makeText(AlbumListActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();
                              }
@@ -152,7 +150,7 @@ public class AlbumListActivity extends AppCompatActivity {
         mRecyclerView =   findViewById(R.id.id_album_rv);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRecyclerViewAdapter =   new RecyclerViewAdapterAlbum();
+        mRecyclerViewAdapter =   new RecyclerViewAdapterAlbum(this);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
     }

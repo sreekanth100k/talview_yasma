@@ -11,6 +11,7 @@
     <Button
         android:layout_width="wrap_content"
         android:id="@+id/id_album_btn"
+        android:textStyle="bold"
         android:text="ALBUM"
         android:textColor="#AA6a0dad"
         android:layout_gravity="center"
@@ -20,6 +21,7 @@
     <Button
         android:layout_width="wrap_content"
         android:id="@+id/id_posts_btn"
+        android:textStyle="bold"
         android:text="POSTS"
         android:textColor="#AA6a0dad"
         android:layout_gravity="center"

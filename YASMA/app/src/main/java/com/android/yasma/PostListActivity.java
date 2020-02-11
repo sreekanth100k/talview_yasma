@@ -133,10 +133,8 @@ public class PostListActivity extends AppCompatActivity {
 
 
                              if (response.isSuccessful()) {
-                                 String msg = "";
 
 
-                                 Toast.makeText(PostListActivity.this, msg, Toast.LENGTH_SHORT).show();
                                  Log.e("cvbnop",response.body().toString());
                              } else {
                                  Toast.makeText(PostListActivity.this, "Some error occurred...", Toast.LENGTH_LONG).show();

@@ -3,6 +3,7 @@ package com.android.yasma;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -60,14 +61,17 @@ public class RecyclerViewAdapterPost extends RecyclerView.Adapter<RecyclerViewAd
         public TextView txtUserId;
         public TextView txtBody;
         public CardView cardView;
+        public LinearLayout outerMostLl;
 
         public ViewHolder(View view) {
             super(view);
 
 //            txtId       = view.findViewById(R.id.txtCoin);
 //            txtUserId   = view.findViewById(R.id.txtMarket);
-            txtBody     = view.findViewById(R.id.txtPrice);
-            cardView    = view.findViewById(R.id.cardView);
+
+            outerMostLl =   view.findViewById(R.id.id_outermost_ll_post_item);
+            txtBody     =   view.findViewById(R.id.txtPrice);
+            cardView    =   view.findViewById(R.id.cardView);
         }
     }
 }
